@@ -113,6 +113,8 @@ resource "aws_cloudfront_distribution" "this" {
       default_ttl = lookup(i.value, "default_ttl", null)
       max_ttl     = lookup(i.value, "max_ttl", null)
 
+      headers                  = lookup(i.value, "headers", [])
+      
       dynamic "forwarded_values" {
         for_each = lookup(i.value, "use_forwarded_values", true) ? [true] : []
 
